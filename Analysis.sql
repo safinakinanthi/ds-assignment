@@ -30,3 +30,16 @@ FROM
     rfm_values 
 ORDER BY
     customer_id;
+
+-- melihat repurchase bulanan
+
+EXPLAIN SELECT 
+  customer_id,
+  DATE_TRUNC('month', order_date) AS transaction_month,
+  COUNT(*) AS tx_count
+FROM 
+  'e_commerce_transactions.csv'
+GROUP BY 
+  customer_id, transaction_month
+HAVING 
+  COUNT(*) > 1
