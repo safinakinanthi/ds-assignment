@@ -5,7 +5,7 @@ WITH rfm_values AS (
         COUNT(order_id) AS frequency,                                  -- menghitung frequency berdasarkan jumlah pembelian
         SUM(payment_value) AS monetary                                 -- menghitung monetary
     FROM
-        'e_commerce_transactions.csv' 
+        'data/e_commerce_transactions.csv' 
     GROUP BY
         customer_id
 )
@@ -38,7 +38,7 @@ EXPLAIN SELECT
   DATE_TRUNC('month', order_date) AS transaction_month,
   COUNT(*) AS tx_count
 FROM 
-  'e_commerce_transactions.csv'
+  'data/e_commerce_transactions.csv'
 GROUP BY 
   customer_id, transaction_month
 HAVING 
